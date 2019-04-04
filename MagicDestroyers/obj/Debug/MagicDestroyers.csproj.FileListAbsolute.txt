@@ -1,0 +1,6 @@
+C:\Users\wu491hk\Documents\Visual Studio 2017\Projects\MagicDestroyers!\MagicDestroyers\bin\Debug\MagicDestroyers.exe.config
+C:\Users\wu491hk\Documents\Visual Studio 2017\Projects\MagicDestroyers!\MagicDestroyers\bin\Debug\MagicDestroyers.exe
+C:\Users\wu491hk\Documents\Visual Studio 2017\Projects\MagicDestroyers!\MagicDestroyers\bin\Debug\MagicDestroyers.pdb
+C:\Users\wu491hk\Documents\Visual Studio 2017\Projects\MagicDestroyers!\MagicDestroyers\obj\Debug\MagicDestroyers.csprojResolveAssemblyReference.cache
+C:\Users\wu491hk\Documents\Visual Studio 2017\Projects\MagicDestroyers!\MagicDestroyers\obj\Debug\MagicDestroyers.exe
+C:\Users\wu491hk\Documents\Visual Studio 2017\Projects\MagicDestroyers!\MagicDestroyers\obj\Debug\MagicDestroyers.pdb
