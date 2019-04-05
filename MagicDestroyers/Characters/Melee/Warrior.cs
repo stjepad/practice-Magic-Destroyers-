@@ -37,13 +37,13 @@ namespace MagicDestroyers.Characters.Melee
         {
             get
             {
-                return faction;
+                return this.faction;
             }
             set
             {
                 if (value == "Melee" || value == "Spellcaster")
                 {
-                    faction = value;
+                    this.faction = value;
                 }
                 else
                 {
@@ -85,6 +85,8 @@ namespace MagicDestroyers.Characters.Melee
                 else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 25.");
             }
         }
+
+        //name Properties
         public string Name
         {
             get
@@ -95,12 +97,13 @@ namespace MagicDestroyers.Characters.Melee
             {
                 if (value.Length >= 3 && value.Length <= 20)
                 {
-                    name = value;
+                    this.name = value;
                 }
                 else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 20");
             }
         }
 
+        //body armor properties
         public Chainlink BodyArmor
         {
             get
@@ -114,6 +117,7 @@ namespace MagicDestroyers.Characters.Melee
         }
 
 
+        //Weapon properties
         public Axe Weapon
         {
             get
@@ -126,11 +130,48 @@ namespace MagicDestroyers.Characters.Melee
             }
         }
 
-        //Constructor
+        //Constructor 1
         public Warrior()
+            : this(10, "Melee")
         {
 
         }
+        
+        // Constructor 2
+        public Warrior(int abilityPoints, string faction)
+            : this(abilityPoints, faction, 20)
+        {
+
+        }
+
+        // Constructor 3
+        public Warrior(int abilityPoints, string faction, int healthPoints)
+            : this(abilityPoints, faction, healthPoints, 10)
+        {
+
+        }
+
+        //Constructor 4
+        public Warrior(int abilityPoints, string faction, int healhPoints, int level)
+            : this(abilityPoints, faction, healhPoints, level, "Regular Warrior")
+        {
+
+        }
+
+        //Constructor 5
+        public Warrior(int abilityPoints, string faction, int healthPoints, int level, string name)
+        {
+            AblilityPoints = abilityPoints;
+            Faction = faction;
+            HealthPoints = healthPoints;
+            Level = level;
+            Name = name;
+            this.Weapon = new Axe();
+            this.BodyArmor = new Chainlink();
+        }
+
+        //// Constructor
+        //public Warrior()
         //Abilities
         public void Strike()
         {
