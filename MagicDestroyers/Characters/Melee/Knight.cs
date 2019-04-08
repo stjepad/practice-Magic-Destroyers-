@@ -132,10 +132,46 @@ namespace MagicDestroyers.Characters.Melee
             }
         }
 
-        //Constructor
+
+        // Start chain constructor here
+        //Constructor 1
         public Knight()
+            : this(4, "Melee")
         {
 
+        }
+
+        // Constructor 2
+        public Knight(int abilityPoints, string faction)
+            : this(abilityPoints, faction, 22)
+        {
+
+        }
+
+        // Constructor 3 
+        public Knight(int abilityPoints, string faction, int healthPoints)
+            : this (abilityPoints, faction, healthPoints, 12)
+        {
+
+        }
+
+        // Constructor 4
+        public Knight(int abilityPoints, string faction, int healthPoints, int level)
+            : this (abilityPoints, faction, healthPoints, level, "Regular Knight")
+        {
+
+        }
+
+        // Constructor 5
+        public Knight(int abilityPoints, string faction, int healthPoints, int level, string name)
+        {
+            AblilityPoints = abilityPoints;
+            Faction = faction;
+            HealthPoints = healthPoints;
+            Level = level;
+            Name = name;
+            this.Weapon = new Hammer();
+            this.BodyArmor = new Chainlink();
         }
         //Abilities
         public void HolyBlow()

@@ -132,11 +132,47 @@ namespace MagicDestroyers.Characters.Melee
             }
         }
 
-        //Constructor
+        // Start Chain Constructor here
+        //Constructor 1
         public Assassin()
+            : this(5, "Melee")
         {
 
         }
+
+        // Constructor 2
+        public Assassin(int ablilityPoints, string faction)
+            : this(ablilityPoints, faction, 15)
+        {
+
+        }
+
+        // Constructor 3
+        public Assassin(int abilityPoints, string faction, int healthPoints)
+            : this(abilityPoints, faction, healthPoints, 11)
+        {
+
+        }
+
+        // Constructor 4
+        public Assassin(int abilityPoints, string faction, int healthPoints, int level )
+            : this(abilityPoints, faction, healthPoints, level, "Regular Assassin")
+        {
+
+        }
+
+        // Constructor 5
+        public Assassin(int abilityPoints, string faction, int healthPoints, int level, string name)
+        {
+            AblilityPoints = abilityPoints;
+            Faction = faction;
+            HealthPoints = healthPoints;
+            Level = level;
+            Name = name;
+            this.Weapon = new Sword();
+            this.BodyArmor = new LightLeatherVest();
+        }
+
         //Abilities
         public void Raze()
         {

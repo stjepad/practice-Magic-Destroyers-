@@ -130,6 +130,7 @@ namespace MagicDestroyers.Characters.Melee
             }
         }
 
+        // Start Chain Constructor here!
         //Constructor 1
         public Warrior()
             : this(10, "Melee")
@@ -170,8 +171,7 @@ namespace MagicDestroyers.Characters.Melee
             this.BodyArmor = new Chainlink();
         }
 
-        //// Constructor
-        //public Warrior()
+        
         //Abilities
         public void Strike()
         {

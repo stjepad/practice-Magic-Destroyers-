@@ -133,11 +133,48 @@ namespace MagicDestroyers.Characters.Spellcasters
                 this.weapon = value;
             }
         }
+
+        // Start Chain Constructor here
         //Constructor
         public Druid()
+            : this(6, "Spellcaster")
         {
 
         }
+
+        // Contructor 2
+        public Druid(int abilityPoints, string faction)
+            : this(abilityPoints, faction, 6)
+        {
+
+        }
+
+        // Constructor 3
+        public Druid(int abilityPoints,string faction, int healthPoints)
+            : this(abilityPoints, faction, healthPoints, 4)
+        {
+
+        }
+
+        // Constructor 4
+        public Druid(int abilityPoints, string faction, int healthPoints, int level)
+            : this(abilityPoints, faction, healthPoints, level, "Regular Druid")
+        {
+
+        }
+
+        // Constructor 5
+        public Druid(int abilityPoints, string faction, int healthPoints, int level, string name)
+        {
+            AblilityPoints = abilityPoints;
+            Faction = faction;
+            HealthPoints = healthPoints;
+            Level = level;
+            Name = name;
+            this.Weapon = new Staff();
+            this.BodyArmor = new LightLeatherVest();
+        }
+
         //Abilities
         public void Moonfire()
         {

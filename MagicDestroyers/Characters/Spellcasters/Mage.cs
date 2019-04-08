@@ -133,10 +133,45 @@ namespace MagicDestroyers.Characters.Spellcasters
             }
         }
 
-        //Constructor
+        // Start Chain Constructor here
+        //Constructor 1
         public Mage()
+            : this(15, "Spellcaster")
         {
 
+        }
+
+        //Constructor 2
+        public Mage(int abilityPoints, string faction)
+            : this(abilityPoints, faction, 7)
+        {
+
+        }
+
+        //Constructor 3
+        public Mage(int abilityPoints, string faction, int healthPoints)
+            : this(abilityPoints, faction, healthPoints, 16)
+        {
+
+        }
+
+        //Constructor 4
+        public Mage(int abilityPoints, string faction, int healthPoints, int level)
+            : this(abilityPoints, faction, healthPoints, level, "Regular Mage")
+        {
+
+        }
+
+        //Constructor 5
+        public Mage(int abilityPoints, string faction, int healthPoints, int level, string name)
+        {
+            AblilityPoints = abilityPoints;
+            Faction = faction;
+            HealthPoints = healthPoints;
+            Level = level;
+            Name = name;
+            this.Weapon = new Staff();
+            this.BodyArmor = new ClothRobe();
         }
         //Abilities
         public void ArcaneWrath()

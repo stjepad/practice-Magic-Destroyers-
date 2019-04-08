@@ -133,11 +133,47 @@ namespace MagicDestroyers.Characters.Spellcasters
             }
         }
 
+        // Start Chain Constructor here
         //Constructor
         public Necromancer()
+            : this(11, "Spellcaster")
         {
 
         }
+
+        //Constructor 2
+        public Necromancer(int abilityPoints, string faction)
+            : this(abilityPoints, faction, 5)
+        {
+
+        }
+
+        //Constructor 3
+        public Necromancer(int abilityPoints, string faction, int healthPoints)
+            : this(abilityPoints, faction, healthPoints, 9)
+        {
+
+        }
+
+        //Constructor 4
+        public Necromancer(int abilityPoints, string faction, int healthPoints, int level)
+            : this(abilityPoints, faction, healthPoints, level, "Regular Necromancer")
+        {
+
+        }
+
+        //Constructor 5
+        public Necromancer(int abilityPoints, string faction, int healthPoints, int level, string name)
+        {
+            AblilityPoints = abilityPoints;
+            Faction = faction;
+            HealthPoints = healthPoints;
+            Level = level;
+            Name = name;
+            this.Weapon = new Sword();
+            this.BodyArmor = new LightLeatherVest();
+        }
+
         //Abilities
         public void ShadowRage()
         {
