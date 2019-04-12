@@ -1,108 +1,46 @@
-﻿using MagicDestroyers.Equipment.Armors.Light;
+﻿using MagicDestroyers.Enumerations;
+using MagicDestroyers.Equipment.Armors.Light;
 using MagicDestroyers.Equipment.Weapons.Blunt;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MagicDestroyers.Characters.Spellcasters
 {
-   public class Mage
-    {
-        private int abilityPoints;
-        private string faction;
-        private int healthPoints;
-        private int level;
-        private string name;
+   public class Mage : Spellcaster
+    {// Character Default stats for comparison
+        // level = up to 25
+        // healthPoints = 20
+        //abilityPoints = 10
+
+        // constant default properties
+        private const int DEFAULT_MANAPOINTS = 15;
+        private const Faction DEFAULT_FACTION = Enumerations.Faction.Spellcaster;
+        private const int DEFAULT_HEALTHPOINTS = 7;
+        private const int DEFAULT_LEVEL = 16;
+        private const string DEFAULT_NAME = "Default Mage Name";
+
+        private readonly ClothRobe DEFAULT_BODYARMOR = new ClothRobe();
+        private readonly Staff DEFAULT_WEAPON = new Staff();
+
+        // private properties
+        private int manaPoints;
+       
         private ClothRobe bodyArmor;
         private Staff weapon;
 
-        // Ability Points properties
-        public int AblilityPoints
+        // Mana Points properties
+        public override int ManaPoints
         {
             get
             {
-                return this.abilityPoints;
+                return this.manaPoints;
             }
             set
             {
                 if (value >= 0 && value <= 23)
                 {
-                    this.abilityPoints = value;
+                    this.manaPoints = value;
                 }
                 else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 23.");
-            }
-        }
-
-        // Faction properties
-        public string Faction
-        {
-            get
-            {
-                return this.faction;
-            }
-            set
-            {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "the faction should be either Melee or Spellcaster");
-                }
-            }
-        }
-
-        // Health points properties
-        public int HealthPoints
-        {
-            get
-            {
-                return this.healthPoints;
-            }
-            set
-            {
-                if (value >= 0 && value <= 12)
-                {
-                    this.healthPoints = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 12.");
-            }
-        }
-
-        // Level properties
-        public int Level
-        {
-            get
-            {
-                return this.level;
-            }
-            set
-            {
-                if (value >= 1 && value <= 25)
-                {
-                    this.level = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 25.");
-            }
-        }
-
-        //Name properties
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                if (value.Length >= 3 && value.Length <= 20)
-                {
-                    this.name = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 20");
             }
         }
 
@@ -136,42 +74,42 @@ namespace MagicDestroyers.Characters.Spellcasters
         // Start Chain Constructor here
         //Constructor 1
         public Mage()
-            : this(15, "Spellcaster")
+            : this(DEFAULT_MANAPOINTS, DEFAULT_FACTION)
         {
 
         }
 
         //Constructor 2
-        public Mage(int abilityPoints, string faction)
-            : this(abilityPoints, faction, 7)
+        public Mage(int abilityPoints, Faction faction)
+            : this(abilityPoints, faction, DEFAULT_HEALTHPOINTS)
         {
 
         }
 
         //Constructor 3
-        public Mage(int abilityPoints, string faction, int healthPoints)
-            : this(abilityPoints, faction, healthPoints, 16)
+        public Mage(int abilityPoints, Faction faction, int healthPoints)
+            : this(abilityPoints, faction, healthPoints, DEFAULT_LEVEL)
         {
 
         }
 
         //Constructor 4
-        public Mage(int abilityPoints, string faction, int healthPoints, int level)
-            : this(abilityPoints, faction, healthPoints, level, "Regular Mage")
+        public Mage(int abilityPoints, Faction faction, int healthPoints, int level)
+            : this(abilityPoints, faction, healthPoints, level, DEFAULT_NAME)
         {
 
         }
 
         //Constructor 5
-        public Mage(int abilityPoints, string faction, int healthPoints, int level, string name)
+        public Mage(int abilityPoints, Faction faction, int healthPoints, int level, string name)
         {
-            AblilityPoints = abilityPoints;
+            ManaPoints = abilityPoints;
             Faction = faction;
             HealthPoints = healthPoints;
             Level = level;
             Name = name;
-            this.Weapon = new Staff();
-            this.BodyArmor = new ClothRobe();
+            this.Weapon = DEFAULT_WEAPON;
+            this.BodyArmor = DEFAULT_BODYARMOR;
         }
         //Abilities
         public void ArcaneWrath()
@@ -186,6 +124,20 @@ namespace MagicDestroyers.Characters.Spellcasters
         public void Meditation()
         {
             throw new NotImplementedException();
+        }
+
+        //General default detail constructor console.writeline to see if info is being processed correctly.
+        public static void GetDefaultValues(Mage mage)
+        {
+            Console.WriteLine($@"MAGE WORKS! INHERITANCE" +
+                $"\nDefault Ability Points: {DEFAULT_MANAPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {mage.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {mage.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n");
         }
     }
 }

@@ -1,107 +1,28 @@
-﻿using MagicDestroyers.Equipment.Armors.Heavy;
+﻿using MagicDestroyers.Enumerations;
+using MagicDestroyers.Equipment.Armors.Heavy;
 using MagicDestroyers.Equipment.Weapons.Sharp;
 using System;
 
 
 namespace MagicDestroyers.Characters.Melee
 {
-    public class Warrior
+    public class Warrior : Melee
     {
-        private int abilityPoints;
-        private string faction;
-        private int healthPoints;
-        private int level;
-        private string name;
+        // Constant default properties
+        private const int DEFAULT_ABILITYPOINTS = 7;
+        private const Faction DEFAULT_FACTION = Faction.Melee;
+        private const int DEFAULT_HEALTHPOINTS = 10;
+        private const int DEFAULT_LEVEL = 7;
+        private const string DEFAULT_NAME = "Default Warrior Name";
+
+        private readonly Chainlink DEFAULT_BODYARMOR = new Chainlink();
+        private readonly Axe DEFAULT_WEAPON = new Axe();
+
+        //Private properites
+       
         private Chainlink bodyArmor;
         private Axe weapon;
 
-        //Ability points properties
-        public int AblilityPoints
-        {
-            get
-            {
-                return this.abilityPoints;
-            }
-            set
-            {
-                if (value >= 0 && value <= 10)
-                {
-                    this.abilityPoints = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 10.");
-            }
-        }
-
-        //Faction properties
-        public string Faction
-        {
-            get
-            {
-                return this.faction;
-            }
-            set
-            {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "the faction should be either Melee or Spellcaster");
-                        }
-            }
-        }
-
-        //HealthPoints properties
-        public int HealthPoints
-        {
-            get
-            {
-                return this.healthPoints;
-            }
-            set
-            {
-                if (value >= 0 && value <= 20)
-                {
-                    this.healthPoints = value;
-                }
-            else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 20.");
-            }
-    }
-
-        //Level Properties
-        public int Level
-        {
-            get
-            {
-                return this.level;
-            }
-            set
-            {
-                if (value >= 1 && value <= 25)
-                {
-                    this.level = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 25.");
-            }
-        }
-
-        //name Properties
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                if (value.Length >= 3 && value.Length <= 20)
-                {
-                    this.name = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 20");
-            }
-        }
 
         //body armor properties
         public Chainlink BodyArmor
@@ -115,7 +36,6 @@ namespace MagicDestroyers.Characters.Melee
                     this.bodyArmor = value;
             }
         }
-
 
         //Weapon properties
         public Axe Weapon
@@ -133,42 +53,42 @@ namespace MagicDestroyers.Characters.Melee
         // Start Chain Constructor here!
         //Constructor 1
         public Warrior()
-            : this(10, "Melee")
+            : this(DEFAULT_ABILITYPOINTS, DEFAULT_FACTION)
         {
 
         }
         
         // Constructor 2
-        public Warrior(int abilityPoints, string faction)
-            : this(abilityPoints, faction, 20)
+        public Warrior(int abilityPoints, Faction faction)
+            : this(abilityPoints, faction, DEFAULT_HEALTHPOINTS)
         {
 
         }
 
         // Constructor 3
-        public Warrior(int abilityPoints, string faction, int healthPoints)
-            : this(abilityPoints, faction, healthPoints, 10)
+        public Warrior(int abilityPoints, Faction faction, int healthPoints)
+            : this(abilityPoints, faction, healthPoints, DEFAULT_LEVEL)
         {
 
         }
 
         //Constructor 4
-        public Warrior(int abilityPoints, string faction, int healhPoints, int level)
-            : this(abilityPoints, faction, healhPoints, level, "Regular Warrior")
+        public Warrior(int abilityPoints, Faction faction, int healhPoints, int level)
+            : this(abilityPoints, faction, healhPoints, level, DEFAULT_NAME)
         {
 
         }
 
         //Constructor 5
-        public Warrior(int abilityPoints, string faction, int healthPoints, int level, string name)
+        public Warrior(int abilityPoints, Faction faction, int healthPoints, int level, string name)
         {
-            AblilityPoints = abilityPoints;
-            Faction = faction;
-            HealthPoints = healthPoints;
-            Level = level;
-            Name = name;
-            this.Weapon = new Axe();
-            this.BodyArmor = new Chainlink();
+            base.AbilityPoints = abilityPoints;
+            base.Faction = faction;
+            base.HealthPoints = healthPoints;
+            base.Level = level;
+            base.Name = name;
+            this.Weapon = DEFAULT_WEAPON;
+            this.BodyArmor = DEFAULT_BODYARMOR;
         }
 
         
@@ -185,6 +105,20 @@ namespace MagicDestroyers.Characters.Melee
         public void SkinHarden()
         {
             throw new NotImplementedException();
+        }
+
+        //General default detail constructor console.writeline to see if info is being processed correctly.
+        public static void GetDefaultValues(Warrior warrior)
+        {
+            Console.WriteLine($@"WARRIOR WORKS! INHERITANCE" +
+                $"\nDefault Ability Points: {DEFAULT_ABILITYPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {warrior.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {warrior.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n");
         }
     }
 }

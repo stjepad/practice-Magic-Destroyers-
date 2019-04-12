@@ -1,4 +1,5 @@
-﻿using MagicDestroyers.Equipment.Armors.Leather;
+﻿using MagicDestroyers.Enumerations;
+using MagicDestroyers.Equipment.Armors.Leather;
 using MagicDestroyers.Equipment.Weapons.Sharp;
 using System;
 using System.Collections.Generic;
@@ -8,18 +9,33 @@ using System.Threading.Tasks;
 
 namespace MagicDestroyers.Characters.Melee
 {
-    public class Assassin
+    public class Assassin : Melee
     {
+        // Character Default stats for comparison
+        // level = up to 25
+        // healthPoints = 20
+        //abilityPoints = 10
+
+        // Constant default properties
+        private const int DEFAULT_ABILITYPOINTS = 5;
+        private const Faction DEFAULT_FACTION = Enumerations.Faction.Melee;
+        private const int DEFAULT_HEALTHPOINTS = 15;
+        private const int DEFAULT_LEVEL = 11;
+        private const string DEFAULT_NAME = "Default Assassin Name";
+
+        private readonly LightLeatherVest DEFAULT_BODYARMOR = new LightLeatherVest();
+        private readonly Sword DEFAULT_WEAPON = new Sword();
+
+
+        //Private properties
         private int abilityPoints;
-        private string faction;
         private int healthPoints;
-        private int level;
-        private string name;
+
         private LightLeatherVest bodyArmor;
         private Sword weapon;
 
         // Ability Points Properties
-        public int AblilityPoints
+        public override int AbilityPoints
         {
             get
             {
@@ -27,36 +43,16 @@ namespace MagicDestroyers.Characters.Melee
             }
             set
             {
-                if (value >= 0 && value <= 12)
+                if (value >= 0 && value <= 15)
                 {
                     this.abilityPoints = value;
                 }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 12.");
+                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 15.");
             }
         }
 
-        // Faction Properties
-        public string Faction
-        {
-            get
-            {
-                return this.faction;
-            }
-            set
-            {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "the faction should be either Melee or Spellcaster");
-                }
-            }
-        }
-
-        // Health Points Properties
-        public int HealthPoints
+        //// Health Points Properties
+        public override int HealthPoints
         {
             get
             {
@@ -69,40 +65,6 @@ namespace MagicDestroyers.Characters.Melee
                     this.healthPoints = value;
                 }
                 else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 25.");
-            }
-        }
-
-        // Level Properties
-        public int Level
-        {
-            get
-            {
-                return this.level;
-            }
-            set
-            {
-                if (value >= 1 && value <= 22)
-                {
-                    this.level = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 22.");
-            }
-        }
-
-        // Name Properties
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                if (value.Length >= 3 && value.Length <= 20)
-                {
-                    this.name = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 20");
             }
         }
 
@@ -135,42 +97,42 @@ namespace MagicDestroyers.Characters.Melee
         // Start Chain Constructor here
         //Constructor 1
         public Assassin()
-            : this(5, "Melee")
+            : this(DEFAULT_ABILITYPOINTS, DEFAULT_FACTION)
         {
 
         }
 
         // Constructor 2
-        public Assassin(int ablilityPoints, string faction)
-            : this(ablilityPoints, faction, 15)
+        public Assassin(int ablilityPoints, Faction faction)
+            : this(ablilityPoints, faction, DEFAULT_HEALTHPOINTS)
         {
 
         }
 
         // Constructor 3
-        public Assassin(int abilityPoints, string faction, int healthPoints)
-            : this(abilityPoints, faction, healthPoints, 11)
+        public Assassin(int abilityPoints, Faction faction, int healthPoints)
+            : this(abilityPoints, faction, healthPoints, DEFAULT_LEVEL)
         {
 
         }
 
         // Constructor 4
-        public Assassin(int abilityPoints, string faction, int healthPoints, int level )
-            : this(abilityPoints, faction, healthPoints, level, "Regular Assassin")
+        public Assassin(int abilityPoints, Faction faction, int healthPoints, int level )
+            : this(abilityPoints, faction, healthPoints, level, DEFAULT_NAME)
         {
 
         }
 
         // Constructor 5
-        public Assassin(int abilityPoints, string faction, int healthPoints, int level, string name)
+        public Assassin(int abilityPoints, Faction faction, int healthPoints, int level, string name)
         {
-            AblilityPoints = abilityPoints;
+            AbilityPoints = abilityPoints;
             Faction = faction;
             HealthPoints = healthPoints;
             Level = level;
             Name = name;
-            this.Weapon = new Sword();
-            this.BodyArmor = new LightLeatherVest();
+            this.Weapon = DEFAULT_WEAPON;
+            this.BodyArmor = DEFAULT_BODYARMOR;
         }
 
         //Abilities
@@ -186,6 +148,19 @@ namespace MagicDestroyers.Characters.Melee
         public void Survival()
         {
             throw new NotImplementedException();
+        }
+
+        public static void GetDefaultValues(Assassin assassin)
+        {
+            Console.WriteLine($@"ASSASSIN WORKS! INHERITANCE" +
+                $"\nDefault Ability Points: {DEFAULT_ABILITYPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {assassin.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {assassin.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n ");
         }
     }
 }

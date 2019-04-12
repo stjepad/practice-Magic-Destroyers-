@@ -6,37 +6,19 @@ using System.Threading.Tasks;
 
 namespace MagicDestroyers.Equipment.Weapons.Blunt
 {
-    public class Hammer
+    public class Hammer : Blunt
     {
-        private int damage;
+        private const int DEFAULT_DAMAGE_POINTS = 23;
 
-        public int Damage
-        {
-            get
-            {
-                return damage;
-            }
-            set
-            {
-                if (value >= 0)
-                {
-                    this.damage = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Armor Points value should be a positive number");
-                }
-            }
-        }
-
-        public Hammer()
+        public Hammer ()
+            : this(DEFAULT_DAMAGE_POINTS)
         {
 
         }
 
-        public void Stun()
+        public Hammer(int damage)
         {
-            throw new NotImplementedException();
+            this.Damage = damage;
         }
     }
 }

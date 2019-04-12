@@ -1,108 +1,48 @@
-﻿using MagicDestroyers.Equipment.Armors.Leather;
+﻿using MagicDestroyers.Enumerations;
+using MagicDestroyers.Equipment.Armors.Leather;
 using MagicDestroyers.Equipment.Weapons.Sharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MagicDestroyers.Characters.Spellcasters
 {
-    public class Necromancer
+    public class Necromancer : Spellcaster
     {
-        private int abilityPoints;
-        private string faction;
-        private int healthPoints;
-        private int level;
-        private string name;
+        // Character Default stats for comparison
+        // level = up to 25
+        // healthPoints = 20
+        //abilityPoints = 10
+
+        // constant default properties
+        private const int DEFAULT_MANAPOINTS = 11;
+        private const Faction DEFAULT_FACTION = Enumerations.Faction.Spellcaster;
+        private const int DEFAULT_HEALTHPOINTS = 5;
+        private const int DEFAULT_LEVEL = 9;
+        private const string DEFAULT_NAME = "Default Necromancer Name";
+
+        private readonly LightLeatherVest DEFAULT_BODYARMOR = new LightLeatherVest();
+        private readonly Sword DEFAULT_WEAPON = new Sword();
+
+
+        //private properties
+        private int manaPoints;
+        
         private LightLeatherVest bodyArmor;
         private Sword weapon;
 
         //Ability points properties
-        public int AblilityPoints
+        public override int ManaPoints
         {
             get
             {
-                return this.abilityPoints;
+                return this.manaPoints;
             }
             set
             {
                 if (value >= 0 && value <= 14)
                 {
-                    this.abilityPoints = value;
+                    this.manaPoints = value;
                 }
                 else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 14.");
-            }
-        }
-
-        //Faction properties
-        public string Faction
-        {
-            get
-            {
-                return this.faction;
-            }
-            set
-            {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "the faction should be either Melee or Spellcaster");
-                }
-            }
-        }
-
-        //HealthPoints properties
-        public int HealthPoints
-        {
-            get
-            {
-                return this.healthPoints;
-            }
-            set
-            {
-                if (value >= 0 && value <= 10)
-                {
-                    this.healthPoints = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 10.");
-            }
-        }
-
-        //Level Properties
-        public int Level
-        {
-            get
-            {
-                return this.level;
-            }
-            set
-            {
-                if (value >= 1 && value <= 15)
-                {
-                    this.level = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 15.");
-            }
-        }
-
-        //name Properties
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                if (value.Length >= 3 && value.Length <= 20)
-                {
-                    this.name = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 20");
             }
         }
 
@@ -136,42 +76,42 @@ namespace MagicDestroyers.Characters.Spellcasters
         // Start Chain Constructor here
         //Constructor
         public Necromancer()
-            : this(11, "Spellcaster")
+            : this(DEFAULT_MANAPOINTS, DEFAULT_FACTION)
         {
 
         }
 
         //Constructor 2
-        public Necromancer(int abilityPoints, string faction)
-            : this(abilityPoints, faction, 5)
+        public Necromancer(int manaPoints, Faction faction)
+            : this(manaPoints, faction, DEFAULT_HEALTHPOINTS)
         {
 
         }
 
         //Constructor 3
-        public Necromancer(int abilityPoints, string faction, int healthPoints)
-            : this(abilityPoints, faction, healthPoints, 9)
+        public Necromancer(int manaPoints, Faction faction, int healthPoints)
+            : this(manaPoints, faction, healthPoints, DEFAULT_LEVEL)
         {
 
         }
 
         //Constructor 4
-        public Necromancer(int abilityPoints, string faction, int healthPoints, int level)
-            : this(abilityPoints, faction, healthPoints, level, "Regular Necromancer")
+        public Necromancer(int manaPoints, Faction faction, int healthPoints, int level)
+            : this(manaPoints, faction, healthPoints, level, DEFAULT_NAME)
         {
 
         }
 
         //Constructor 5
-        public Necromancer(int abilityPoints, string faction, int healthPoints, int level, string name)
+        public Necromancer(int manaPoints, Faction faction, int healthPoints, int level, string name)
         {
-            AblilityPoints = abilityPoints;
+            ManaPoints = manaPoints;
             Faction = faction;
             HealthPoints = healthPoints;
             Level = level;
             Name = name;
-            this.Weapon = new Sword();
-            this.BodyArmor = new LightLeatherVest();
+            this.Weapon = DEFAULT_WEAPON;
+            this.BodyArmor = DEFAULT_BODYARMOR;
         }
 
         //Abilities
@@ -187,6 +127,19 @@ namespace MagicDestroyers.Characters.Spellcasters
         public void BoneShield()
         {
             throw new NotImplementedException();
+        }
+
+        public static void GetDefaultValues(Necromancer necromancer)
+        {
+            Console.WriteLine($@"MAGE WORKS! INHERITANCE" +
+                $"\nDefault Ability Points: {DEFAULT_MANAPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {necromancer.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {necromancer.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n");
         }
     }
 }

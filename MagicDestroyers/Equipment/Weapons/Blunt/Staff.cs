@@ -6,37 +6,19 @@ using System.Threading.Tasks;
 
 namespace MagicDestroyers.Equipment.Weapons.Blunt
 {
-    public class Staff
+    public class Staff : Blunt
     {
-        private int damage;
+        private const int DEFAULT_DAMAGE_POINTS = 13;
 
-        public int Damage
-        {
-            get
+        public Staff()
+            : this(DEFAULT_DAMAGE_POINTS)
             {
-                return damage;
+
             }
-            set
-            {
-                if (value >= 0)
-                {
-                    this.damage = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Armor Points value should be a positive number");
-                }
-            }
-        }
-
-        public Staff ()
+        public Staff(int damage)
         {
-
+            this.Damage = damage;
         }
 
-        public void Empower()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

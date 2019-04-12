@@ -1,4 +1,5 @@
-﻿using MagicDestroyers.Equipment.Armors.Heavy;
+﻿using MagicDestroyers.Enumerations;
+using MagicDestroyers.Equipment.Armors.Heavy;
 using MagicDestroyers.Equipment.Weapons.Blunt;
 using System;
 using System.Collections.Generic;
@@ -8,55 +9,32 @@ using System.Threading.Tasks;
 
 namespace MagicDestroyers.Characters.Melee
 {
-    public class Knight
+    public class Knight : Melee
     {
-        private int abilityPoints;
-        private string faction;
-        private int healthPoints;
+        // Character Default stats for comparison
+        // level = up to 25
+        // healthPoints = 20
+        //abilityPoints = 10
+
+        //Constant Default Properties
+        private const int DEFAULT_ABILITYPOINTS = 4;
+        private const Faction DEFAULT_FACTION = Enumerations.Faction.Melee;
+        private const int DEFAULT_HEALTHPOINTS = 22;
+        private const int DEFAULT_LEVEL = 12;
+        private const string DEFAULT_NAME = "Default Knight Name";
+
+        private readonly Chainlink DEFAULT_BODYARMOR = new Chainlink();
+        private readonly Hammer DEFAULT_WEAPON = new Hammer();
+
+        //Private Properties
         private int level;
-        private string name;
+        private int healthPoints;
+
         private Chainlink bodyArmor;
         private Hammer weapon;
 
-        //Ability points properties
-        public int AblilityPoints
-        {
-            get
-            {
-                return this.abilityPoints;
-            }
-            set
-            {
-                if (value >= 0 && value <= 9)
-                {
-                    this.abilityPoints = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 9.");
-            }
-        }
-
-        //Faction properties
-        public string Faction
-        {
-            get
-            {
-                return this.faction;
-            }
-            set
-            {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "the faction should be either Melee or Spellcaster");
-                }
-            }
-        }
-
-        //HealthPoints properties
-        public int HealthPoints
+        //// Health Points Properties
+        public override int HealthPoints
         {
             get
             {
@@ -64,16 +42,16 @@ namespace MagicDestroyers.Characters.Melee
             }
             set
             {
-                if (value >= 0 && value <= 30)
+                if (value >= 0 && value <= 25)
                 {
                     this.healthPoints = value;
                 }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 30.");
+                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 25.");
             }
         }
 
         //Level Properties
-        public int Level
+        public override int Level
         {
             get
             {
@@ -86,23 +64,6 @@ namespace MagicDestroyers.Characters.Melee
                     this.level = value;
                 }
                 else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 23.");
-            }
-        }
-
-        //name Properties
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                if (value.Length >= 3 && value.Length <= 20)
-                {
-                    this.name = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 20");
             }
         }
 
@@ -136,42 +97,42 @@ namespace MagicDestroyers.Characters.Melee
         // Start chain constructor here
         //Constructor 1
         public Knight()
-            : this(4, "Melee")
+            : this(DEFAULT_ABILITYPOINTS, DEFAULT_FACTION)
         {
 
         }
 
         // Constructor 2
-        public Knight(int abilityPoints, string faction)
-            : this(abilityPoints, faction, 22)
+        public Knight(int abilityPoints, Faction faction)
+            : this(abilityPoints, faction, DEFAULT_HEALTHPOINTS)
         {
 
         }
 
         // Constructor 3 
-        public Knight(int abilityPoints, string faction, int healthPoints)
-            : this (abilityPoints, faction, healthPoints, 12)
+        public Knight(int abilityPoints, Faction faction, int healthPoints)
+            : this (abilityPoints, faction, healthPoints, DEFAULT_LEVEL)
         {
 
         }
 
         // Constructor 4
-        public Knight(int abilityPoints, string faction, int healthPoints, int level)
-            : this (abilityPoints, faction, healthPoints, level, "Regular Knight")
+        public Knight(int abilityPoints, Faction faction, int healthPoints, int level)
+            : this (abilityPoints, faction, healthPoints, level, DEFAULT_NAME)
         {
 
         }
 
         // Constructor 5
-        public Knight(int abilityPoints, string faction, int healthPoints, int level, string name)
+        public Knight(int abilityPoints, Faction faction, int healthPoints, int level, string name)
         {
-            AblilityPoints = abilityPoints;
+            AbilityPoints = abilityPoints;
             Faction = faction;
             HealthPoints = healthPoints;
             Level = level;
             Name = name;
-            this.Weapon = new Hammer();
-            this.BodyArmor = new Chainlink();
+            this.Weapon = DEFAULT_WEAPON;
+            this.BodyArmor = DEFAULT_BODYARMOR;
         }
         //Abilities
         public void HolyBlow()
@@ -186,6 +147,19 @@ namespace MagicDestroyers.Characters.Melee
         public void RighteousWings()
         {
             throw new NotImplementedException();
+        }
+
+        public static void GetDefaultValues(Knight knight)
+        {
+            Console.WriteLine($@"KNIGHT WORKS! INHERITANCE" +
+                $"\nDefault Ability Points: {DEFAULT_ABILITYPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {knight.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {knight.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n ");
         }
     }
 }

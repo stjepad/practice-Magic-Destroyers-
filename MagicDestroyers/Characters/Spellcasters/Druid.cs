@@ -1,111 +1,47 @@
-﻿using MagicDestroyers.Equipment.Armors.Leather;
+﻿using MagicDestroyers.Enumerations;
+using MagicDestroyers.Equipment.Armors.Leather;
 using MagicDestroyers.Equipment.Weapons.Blunt;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MagicDestroyers.Characters.Spellcasters
 {
-   public class Druid
+   public class Druid : Spellcaster
     {
-        private int abilityPoints;
-        private string faction;
-        private int healthPoints;
-        private int level;
-        private string name;
+        // Character Default stats for comparison
+        // level = up to 25
+        // healthPoints = 20
+        //abilityPoints = 10
+
+        // constant default properties 
+        private const int DEFAULT_MANAPOINTS = 6;
+        private const Faction DEFAULT_FACTION = Enumerations.Faction.Spellcaster;
+        private const int DEFAULT_HEALTHPOINTS = 4;
+        private const int DEFAULT_LEVEL = 6;
+        private const string DEFAULT_NAME = "Default Druid Name";
+
+        private readonly LightLeatherVest DEFAULT_BODYARMOR = new LightLeatherVest();
+        private readonly Staff DEFAULT_WEAPON = new Staff();
+        //private properties
+        private int manaPoints;
         private LightLeatherVest bodyArmor;
         private Staff weapon;
 
         //Ability Points properties
-        public int AblilityPoints
+        public override int ManaPoints
         {
             get
             {
-                return this.abilityPoints;
+                return this.manaPoints;
             }
             set
             {
                 if (value >= 0 && value <= 13)
                 {
-                    this.abilityPoints = value;
+                    this.manaPoints = value;
                 }
                 else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 13.");
             }
         }
-
-        // Faction properties
-        public string Faction
-        {
-            get
-            {
-                return this.faction;
-            }
-            set
-            {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    this.faction = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "the faction should be either Melee or Spellcaster");
-                }
-            }
-        }
-
-        // Health Points properties
-        public int HealthPoints
-        {
-            get
-            {
-                return this.healthPoints;
-            }
-            set
-            {
-                if (value >= 0 && value <= 14)
-                {
-                    this.healthPoints = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 14.");
-            }
-        }
-
-        // Level properties
-        public int Level
-        {
-            get
-            {
-                return this.level;
-            }
-            set
-            {
-                if (value >= 1 && value <= 17)
-                {
-                    this.level = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 17.");
-            }
-        }
-
-        // Name properties
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                if (value.Length >= 3 && value.Length <= 20)
-                {
-                    this.name = value;
-                }
-                else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 20");
-            }
-        }
-
 
         //body armor properties
         public LightLeatherVest BodyArmor
@@ -137,42 +73,42 @@ namespace MagicDestroyers.Characters.Spellcasters
         // Start Chain Constructor here
         //Constructor
         public Druid()
-            : this(6, "Spellcaster")
+            : this(DEFAULT_MANAPOINTS, DEFAULT_FACTION)
         {
 
         }
 
         // Contructor 2
-        public Druid(int abilityPoints, string faction)
-            : this(abilityPoints, faction, 6)
+        public Druid(int abilityPoints, Faction faction)
+            : this(abilityPoints, faction, DEFAULT_HEALTHPOINTS)
         {
 
         }
 
         // Constructor 3
-        public Druid(int abilityPoints,string faction, int healthPoints)
-            : this(abilityPoints, faction, healthPoints, 4)
+        public Druid(int abilityPoints,Faction faction, int healthPoints)
+            : this(abilityPoints, faction, healthPoints, DEFAULT_LEVEL)
         {
 
         }
 
         // Constructor 4
-        public Druid(int abilityPoints, string faction, int healthPoints, int level)
-            : this(abilityPoints, faction, healthPoints, level, "Regular Druid")
+        public Druid(int abilityPoints, Faction faction, int healthPoints, int level)
+            : this(abilityPoints, faction, healthPoints, level, DEFAULT_NAME)
         {
 
         }
 
         // Constructor 5
-        public Druid(int abilityPoints, string faction, int healthPoints, int level, string name)
+        public Druid(int abilityPoints, Faction faction, int healthPoints, int level, string name)
         {
-            AblilityPoints = abilityPoints;
+            ManaPoints = abilityPoints;
             Faction = faction;
             HealthPoints = healthPoints;
             Level = level;
             Name = name;
-            this.Weapon = new Staff();
-            this.BodyArmor = new LightLeatherVest();
+            this.Weapon = DEFAULT_WEAPON;
+            this.BodyArmor = DEFAULT_BODYARMOR;
         }
 
         //Abilities
@@ -190,6 +126,17 @@ namespace MagicDestroyers.Characters.Spellcasters
             throw new NotImplementedException();
         }
 
-
+        public static void GetDefaultValues(Druid druid)
+        {
+            Console.WriteLine($@"DRUID WORKS! INHERITANCE" +
+                $"\nDefault Mana Points: {DEFAULT_MANAPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {druid.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {druid.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n ");
+        }
     }
 }
