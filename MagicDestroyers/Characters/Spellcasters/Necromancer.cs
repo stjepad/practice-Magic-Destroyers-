@@ -114,6 +114,20 @@ namespace MagicDestroyers.Characters.Spellcasters
             this.BodyArmor = DEFAULT_BODYARMOR;
         }
 
+
+        public static void GetDefaultValues(Necromancer necromancer)
+        {
+            Console.WriteLine($@"MAGE WORKS! INHERITANCE" +
+                $"\nDefault Ability Points: {DEFAULT_MANAPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {necromancer.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {necromancer.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n");
+        }
+
         //Abilities
         public void ShadowRage()
         {
@@ -129,17 +143,20 @@ namespace MagicDestroyers.Characters.Spellcasters
             throw new NotImplementedException();
         }
 
-        public static void GetDefaultValues(Necromancer necromancer)
+        // Implemented Abstract Attack Methods
+        public override void Attack()
         {
-            Console.WriteLine($@"MAGE WORKS! INHERITANCE" +
-                $"\nDefault Ability Points: {DEFAULT_MANAPOINTS} " +
-                $"\nDefault Faction: {DEFAULT_FACTION} " +
-                $"\nDefault Name: {DEFAULT_NAME} " +
-                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
-                $"\nDefault Level: {DEFAULT_LEVEL} " +
-                $"\nDedault Weapon Damage: {necromancer.DEFAULT_WEAPON.Damage}" +
-                $"\nDedault Body Armor Points: {necromancer.DEFAULT_BODYARMOR.ArmorPoints}" +
-                $"\n");
+            throw new NotImplementedException();
+        }
+
+        public override void SpecialAttack()
+        {
+            throw new NotImplementedException();
+        }
+        //Implemented Abstract Defense Method
+        public override void Defend()
+        {
+            throw new NotImplementedException();
         }
     }
 }

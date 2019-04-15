@@ -134,6 +134,20 @@ namespace MagicDestroyers.Characters.Melee
             this.Weapon = DEFAULT_WEAPON;
             this.BodyArmor = DEFAULT_BODYARMOR;
         }
+
+        public static void GetDefaultValues(Knight knight)
+        {
+            Console.WriteLine($@"KNIGHT WORKS! INHERITANCE" +
+                $"\nDefault Ability Points: {DEFAULT_ABILITYPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {knight.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {knight.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n ");
+        }
+
         //Abilities
         public void HolyBlow()
         {
@@ -148,18 +162,21 @@ namespace MagicDestroyers.Characters.Melee
         {
             throw new NotImplementedException();
         }
-
-        public static void GetDefaultValues(Knight knight)
+        // Implemented Abstract Attack Methods
+        public override void Attack()
         {
-            Console.WriteLine($@"KNIGHT WORKS! INHERITANCE" +
-                $"\nDefault Ability Points: {DEFAULT_ABILITYPOINTS} " +
-                $"\nDefault Faction: {DEFAULT_FACTION} " +
-                $"\nDefault Name: {DEFAULT_NAME} " +
-                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
-                $"\nDefault Level: {DEFAULT_LEVEL} " +
-                $"\nDedault Weapon Damage: {knight.DEFAULT_WEAPON.Damage}" +
-                $"\nDedault Body Armor Points: {knight.DEFAULT_BODYARMOR.ArmorPoints}" +
-                $"\n ");
+            throw new NotImplementedException();
+        }
+
+        public override void SpecialAttack()
+        {
+            throw new NotImplementedException();
+        }
+
+        //Implemented Abstract Defense Method
+        public override void Defend()
+        {
+            throw new NotImplementedException();
         }
     }
 }

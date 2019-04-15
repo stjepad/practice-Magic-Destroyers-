@@ -92,6 +92,22 @@ namespace MagicDestroyers.Characters.Melee
         }
 
         
+        //General default detail constructor console.writeline to see if info is being processed correctly.
+        public static void GetDefaultValues(Warrior warrior)
+        {
+            Console.WriteLine($@"WARRIOR WORKS! INHERITANCE" +
+                $"\nDefault Ability Points: {DEFAULT_ABILITYPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {warrior.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {warrior.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n");
+        }
+
+
+
         //Abilities
         public void Strike()
         {
@@ -107,18 +123,21 @@ namespace MagicDestroyers.Characters.Melee
             throw new NotImplementedException();
         }
 
-        //General default detail constructor console.writeline to see if info is being processed correctly.
-        public static void GetDefaultValues(Warrior warrior)
+        // Implemented Abstract Attack Methods
+        public override void Attack()
         {
-            Console.WriteLine($@"WARRIOR WORKS! INHERITANCE" +
-                $"\nDefault Ability Points: {DEFAULT_ABILITYPOINTS} " +
-                $"\nDefault Faction: {DEFAULT_FACTION} " +
-                $"\nDefault Name: {DEFAULT_NAME} " +
-                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
-                $"\nDefault Level: {DEFAULT_LEVEL} " +
-                $"\nDedault Weapon Damage: {warrior.DEFAULT_WEAPON.Damage}" +
-                $"\nDedault Body Armor Points: {warrior.DEFAULT_BODYARMOR.ArmorPoints}" +
-                $"\n");
+            throw new NotImplementedException();
+        }
+
+        public override void SpecialAttack()
+        {
+            throw new NotImplementedException();
+        }
+
+        //Implemented Abstract Defense Method
+        public override void Defend()
+        {
+            throw new NotImplementedException();
         }
     }
 }

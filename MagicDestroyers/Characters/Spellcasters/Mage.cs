@@ -6,11 +6,7 @@ using System;
 namespace MagicDestroyers.Characters.Spellcasters
 {
    public class Mage : Spellcaster
-    {// Character Default stats for comparison
-        // level = up to 25
-        // healthPoints = 20
-        //abilityPoints = 10
-
+    {
         // constant default properties
         private const int DEFAULT_MANAPOINTS = 15;
         private const Faction DEFAULT_FACTION = Enumerations.Faction.Spellcaster;
@@ -111,6 +107,21 @@ namespace MagicDestroyers.Characters.Spellcasters
             this.Weapon = DEFAULT_WEAPON;
             this.BodyArmor = DEFAULT_BODYARMOR;
         }
+
+        //General default detail constructor console.writeline to see if info is being processed correctly.
+        public static void GetDefaultValues(Mage mage)
+        {
+            Console.WriteLine($@"MAGE WORKS! INHERITANCE" +
+                $"\nDefault Ability Points: {DEFAULT_MANAPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {mage.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {mage.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n");
+        }
+
         //Abilities
         public void ArcaneWrath()
         {
@@ -125,19 +136,21 @@ namespace MagicDestroyers.Characters.Spellcasters
         {
             throw new NotImplementedException();
         }
-
-        //General default detail constructor console.writeline to see if info is being processed correctly.
-        public static void GetDefaultValues(Mage mage)
+        // Implemented Abstract Attack Methods
+        public override void Attack()
         {
-            Console.WriteLine($@"MAGE WORKS! INHERITANCE" +
-                $"\nDefault Ability Points: {DEFAULT_MANAPOINTS} " +
-                $"\nDefault Faction: {DEFAULT_FACTION} " +
-                $"\nDefault Name: {DEFAULT_NAME} " +
-                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
-                $"\nDefault Level: {DEFAULT_LEVEL} " +
-                $"\nDedault Weapon Damage: {mage.DEFAULT_WEAPON.Damage}" +
-                $"\nDedault Body Armor Points: {mage.DEFAULT_BODYARMOR.ArmorPoints}" +
-                $"\n");
+            throw new NotImplementedException();
+        }
+
+        public override void SpecialAttack()
+        {
+            throw new NotImplementedException();
+        }
+
+        //Implemented Abstract Defense Method
+        public override void Defend()
+        {
+            throw new NotImplementedException();
         }
     }
 }

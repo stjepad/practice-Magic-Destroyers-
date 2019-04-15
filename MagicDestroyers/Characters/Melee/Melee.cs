@@ -3,7 +3,7 @@
 
 namespace MagicDestroyers.Characters.Melee
 {
-    public class Melee : Character
+    public abstract class Melee : Character
     {
         private int abilityPoints;
 

@@ -135,6 +135,20 @@ namespace MagicDestroyers.Characters.Melee
             this.BodyArmor = DEFAULT_BODYARMOR;
         }
 
+
+        public static void GetDefaultValues(Assassin assassin)
+        {
+            Console.WriteLine($@"ASSASSIN WORKS! INHERITANCE" +
+                $"\nDefault Ability Points: {DEFAULT_ABILITYPOINTS} " +
+                $"\nDefault Faction: {DEFAULT_FACTION} " +
+                $"\nDefault Name: {DEFAULT_NAME} " +
+                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {assassin.DEFAULT_WEAPON.Damage}" +
+                $"\nDedault Body Armor Points: {assassin.DEFAULT_BODYARMOR.ArmorPoints}" +
+                $"\n ");
+        }
+
         //Abilities
         public void Raze()
         {
@@ -149,18 +163,20 @@ namespace MagicDestroyers.Characters.Melee
         {
             throw new NotImplementedException();
         }
-
-        public static void GetDefaultValues(Assassin assassin)
+        // Implemented Abstract Attack Methods
+        public override void Attack()
         {
-            Console.WriteLine($@"ASSASSIN WORKS! INHERITANCE" +
-                $"\nDefault Ability Points: {DEFAULT_ABILITYPOINTS} " +
-                $"\nDefault Faction: {DEFAULT_FACTION} " +
-                $"\nDefault Name: {DEFAULT_NAME} " +
-                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
-                $"\nDefault Level: {DEFAULT_LEVEL} " +
-                $"\nDedault Weapon Damage: {assassin.DEFAULT_WEAPON.Damage}" +
-                $"\nDedault Body Armor Points: {assassin.DEFAULT_BODYARMOR.ArmorPoints}" +
-                $"\n ");
+            throw new NotImplementedException();
+        }
+
+        public override void SpecialAttack()
+        {
+            throw new NotImplementedException();
+        }
+        //Implemented Abstract Defense Method
+        public override void Defend()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using MagicDestroyers.Enumerations;
+﻿using MagicDestroyers.Characters.Interfaces;
+using MagicDestroyers.Enumerations;
 using System;
 
 namespace MagicDestroyers.Characters
 {
-    public class Character
+    public abstract class Character : IAttack, IDefend
     {
         private Faction faction;
         private int healthPoints;
@@ -73,6 +74,16 @@ namespace MagicDestroyers.Characters
                 else throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 30");
             }
         }
+
+        // inplemented Attack Interface
+        public abstract void Attack();
+        
+        public abstract void SpecialAttack();
+        
+
+        // inplemented Defend Interface 
+        public abstract void Defend();
+        
 
     }
 }
