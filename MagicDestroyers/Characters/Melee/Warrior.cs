@@ -9,21 +9,13 @@ namespace MagicDestroyers.Characters.Melee
     public class Warrior : Melee
     {
         // Constant default properties
-        private const int DEFAULT_ABILITYPOINTS = 7;
-        private const Faction DEFAULT_FACTION = Faction.Melee;
-        private const int DEFAULT_HEALTHPOINTS = 10;
-        private const int DEFAULT_LEVEL = 7;
-        private const string DEFAULT_NAME = "Default Warrior Name";
+       
 
         private readonly Chainlink DEFAULT_BODYARMOR = new Chainlink();
         private readonly Axe DEFAULT_WEAPON = new Axe();
 
-        //Private properites
-       
         private Chainlink bodyArmor;
         private Axe weapon;
-
-
         //body armor properties
         public Chainlink BodyArmor
         {
@@ -53,28 +45,28 @@ namespace MagicDestroyers.Characters.Melee
         // Start Chain Constructor here!
         //Constructor 1
         public Warrior()
-            : this(DEFAULT_ABILITYPOINTS, DEFAULT_FACTION)
+            : this(Consts.Warrior.DEFAULT_ABILITYPOINTS, Consts.Mage.DEFAULT_FACTION)
         {
 
         }
         
         // Constructor 2
         public Warrior(int abilityPoints, Faction faction)
-            : this(abilityPoints, faction, DEFAULT_HEALTHPOINTS)
+            : this(abilityPoints, faction, Consts.Warrior.DEFAULT_HEALTHPOINTS)
         {
 
         }
 
         // Constructor 3
         public Warrior(int abilityPoints, Faction faction, int healthPoints)
-            : this(abilityPoints, faction, healthPoints, DEFAULT_LEVEL)
+            : this(abilityPoints, faction, healthPoints, Consts.Warrior.DEFAULT_LEVEL)
         {
 
         }
 
         //Constructor 4
         public Warrior(int abilityPoints, Faction faction, int healhPoints, int level)
-            : this(abilityPoints, faction, healhPoints, level, DEFAULT_NAME)
+            : this(abilityPoints, faction, healhPoints, level, Consts.Warrior.DEFAULT_NAME)
         {
 
         }
@@ -87,8 +79,10 @@ namespace MagicDestroyers.Characters.Melee
             base.HealthPoints = healthPoints;
             base.Level = level;
             base.Name = name;
-            this.Weapon = DEFAULT_WEAPON;
-            this.BodyArmor = DEFAULT_BODYARMOR;
+            base.Weapon = DEFAULT_WEAPON;
+            base.BodyArmor = DEFAULT_BODYARMOR;
+            base.IsAlive = true;
+            base.Scores = 0;
         }
 
         
@@ -96,12 +90,12 @@ namespace MagicDestroyers.Characters.Melee
         public static void GetDefaultValues(Warrior warrior)
         {
             Console.WriteLine($@"WARRIOR WORKS! INHERITANCE" +
-                $"\nDefault Ability Points: {DEFAULT_ABILITYPOINTS} " +
-                $"\nDefault Faction: {DEFAULT_FACTION} " +
-                $"\nDefault Name: {DEFAULT_NAME} " +
-                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
-                $"\nDefault Level: {DEFAULT_LEVEL} " +
-                $"\nDedault Weapon Damage: {warrior.DEFAULT_WEAPON.Damage}" +
+                $"\nDefault Ability Points: {Consts.Warrior.DEFAULT_ABILITYPOINTS} " +
+                $"\nDefault Faction: {Consts.Warrior.DEFAULT_FACTION} " +
+                $"\nDefault Name: {Consts.Warrior.DEFAULT_NAME} " +
+                $"\nDefault Health Points: {Consts.Warrior.DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {Consts.Warrior.DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {warrior.DEFAULT_WEAPON.DamagePoints}" +
                 $"\nDedault Body Armor Points: {warrior.DEFAULT_BODYARMOR.ArmorPoints}" +
                 $"\n");
         }
@@ -109,35 +103,35 @@ namespace MagicDestroyers.Characters.Melee
 
 
         //Abilities
-        public void Strike()
+        public int Strike()
         {
-            throw new NotImplementedException();
+            return base.DamagePoints + 4;
         }
-        public void Execute()
+        public int Execute()
         {
             throw new NotImplementedException();
         }
 
-        public void SkinHarden()
+        public int SkinHarden()
         {
-            throw new NotImplementedException();
+            return base.BodyArmor.ArmorPoints + 2;
         }
 
         // Implemented Abstract Attack Methods
-        public override void Attack()
+        public override int Attack()
         {
-            throw new NotImplementedException();
+            return this.Strike();
         }
 
-        public override void SpecialAttack()
+        public override int SpecialAttack()
         {
-            throw new NotImplementedException();
+            return this.Execute();
         }
 
         //Implemented Abstract Defense Method
-        public override void Defend()
+        public override int Defend()
         {
-            throw new NotImplementedException();
+           return this.SkinHarden();
         }
     }
 }

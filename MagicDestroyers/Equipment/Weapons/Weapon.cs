@@ -10,7 +10,7 @@ namespace MagicDestroyers.Equipment.Weapons
     {
         private int damage;
 
-        public int Damage
+        public int DamagePoints
         {
             get
             {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MagicDestroyers.Equipment.Weapons.Sharp
 {
-    public abstract class Sword : Sharp
+    public class Sword : Sharp
     {
         private const int DEFAULT_DAMAGE_POINTS = 20;
 
@@ -18,7 +18,7 @@ namespace MagicDestroyers.Equipment.Weapons.Sharp
 
         public Sword(int damage)
         {
-            this.Damage = damage;
+            this.DamagePoints = damage;
         }
     }
 }

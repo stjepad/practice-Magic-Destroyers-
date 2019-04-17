@@ -7,13 +7,6 @@ namespace MagicDestroyers.Characters.Spellcasters
 {
    public class Mage : Spellcaster
     {
-        // constant default properties
-        private const int DEFAULT_MANAPOINTS = 15;
-        private const Faction DEFAULT_FACTION = Enumerations.Faction.Spellcaster;
-        private const int DEFAULT_HEALTHPOINTS = 7;
-        private const int DEFAULT_LEVEL = 16;
-        private const string DEFAULT_NAME = "Default Mage Name";
-
         private readonly ClothRobe DEFAULT_BODYARMOR = new ClothRobe();
         private readonly Staff DEFAULT_WEAPON = new Staff();
 
@@ -70,28 +63,28 @@ namespace MagicDestroyers.Characters.Spellcasters
         // Start Chain Constructor here
         //Constructor 1
         public Mage()
-            : this(DEFAULT_MANAPOINTS, DEFAULT_FACTION)
+            : this(Consts.Mage.DEFAULT_MANAPOINTS, Consts.Mage.DEFAULT_FACTION)
         {
 
         }
 
         //Constructor 2
         public Mage(int abilityPoints, Faction faction)
-            : this(abilityPoints, faction, DEFAULT_HEALTHPOINTS)
+            : this(abilityPoints, faction, Consts.Mage.DEFAULT_HEALTHPOINTS)
         {
 
         }
 
         //Constructor 3
         public Mage(int abilityPoints, Faction faction, int healthPoints)
-            : this(abilityPoints, faction, healthPoints, DEFAULT_LEVEL)
+            : this(abilityPoints, faction, healthPoints, Consts.Mage.DEFAULT_LEVEL)
         {
 
         }
 
         //Constructor 4
         public Mage(int abilityPoints, Faction faction, int healthPoints, int level)
-            : this(abilityPoints, faction, healthPoints, level, DEFAULT_NAME)
+            : this(abilityPoints, faction, healthPoints, level, Consts.Mage.DEFAULT_NAME)
         {
 
         }
@@ -99,58 +92,60 @@ namespace MagicDestroyers.Characters.Spellcasters
         //Constructor 5
         public Mage(int abilityPoints, Faction faction, int healthPoints, int level, string name)
         {
-            ManaPoints = abilityPoints;
-            Faction = faction;
-            HealthPoints = healthPoints;
-            Level = level;
-            Name = name;
-            this.Weapon = DEFAULT_WEAPON;
-            this.BodyArmor = DEFAULT_BODYARMOR;
+            base.ManaPoints = abilityPoints;
+            base.Faction = faction;
+            base.HealthPoints = healthPoints;
+            base.Level = level;
+            base.Name = name;
+            base.Weapon = DEFAULT_WEAPON;
+            base.BodyArmor = DEFAULT_BODYARMOR;
+            base.IsAlive = true;
+            base.Scores = 0;
         }
 
         //General default detail constructor console.writeline to see if info is being processed correctly.
         public static void GetDefaultValues(Mage mage)
         {
             Console.WriteLine($@"MAGE WORKS! INHERITANCE" +
-                $"\nDefault Ability Points: {DEFAULT_MANAPOINTS} " +
-                $"\nDefault Faction: {DEFAULT_FACTION} " +
-                $"\nDefault Name: {DEFAULT_NAME} " +
-                $"\nDefault Health Points: {DEFAULT_HEALTHPOINTS} " +
-                $"\nDefault Level: {DEFAULT_LEVEL} " +
-                $"\nDedault Weapon Damage: {mage.DEFAULT_WEAPON.Damage}" +
+                $"\nDefault Ability Points: {Consts.Mage.DEFAULT_MANAPOINTS} " +
+                $"\nDefault Faction: {Consts.Mage.DEFAULT_FACTION} " +
+                $"\nDefault Name: {Consts.Mage.DEFAULT_NAME} " +
+                $"\nDefault Health Points: {Consts.Mage.DEFAULT_HEALTHPOINTS} " +
+                $"\nDefault Level: {Consts.Mage.DEFAULT_LEVEL} " +
+                $"\nDedault Weapon Damage: {mage.DEFAULT_WEAPON.DamagePoints}" +
                 $"\nDedault Body Armor Points: {mage.DEFAULT_BODYARMOR.ArmorPoints}" +
                 $"\n");
         }
 
         //Abilities
-        public void ArcaneWrath()
+        public int ArcaneWrath()
         {
-            throw new NotImplementedException();
+            return base.Weapon.DamagePoints + 4; 
         }
-        public void Firewall()
+        public int Firewall()
         {
             throw new NotImplementedException();
         }
 
-        public void Meditation()
+        public int Meditation()
         {
-            throw new NotImplementedException();
+            return base.BodyArmor.ArmorPoints + 3;
         }
         // Implemented Abstract Attack Methods
-        public override void Attack()
+        public override int Attack()
         {
-            throw new NotImplementedException();
+            return this.ArcaneWrath();
         }
 
-        public override void SpecialAttack()
+        public override int  SpecialAttack()
         {
-            throw new NotImplementedException();
+            return this.Firewall();
         }
 
         //Implemented Abstract Defense Method
-        public override void Defend()
+        public override int Defend()
         {
-            throw new NotImplementedException();
+            return this.Meditation();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace MagicDestroyers.Equipment.Weapons.Blunt
             }
         public Staff(int damage)
         {
-            this.Damage = damage;
+            this.DamagePoints = damage;
         }
 
     }

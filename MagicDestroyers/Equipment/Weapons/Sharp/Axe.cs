@@ -17,7 +17,7 @@ namespace MagicDestroyers.Equipment.Weapons.Sharp
 
         public Axe(int damage)
         {
-            this.Damage = damage;
+            this.DamagePoints = damage;
         }
 
         public void HackNSlash()

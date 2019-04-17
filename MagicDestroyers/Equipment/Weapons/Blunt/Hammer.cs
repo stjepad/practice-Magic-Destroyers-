@@ -18,7 +18,7 @@ namespace MagicDestroyers.Equipment.Weapons.Blunt
 
         public Hammer(int damage)
         {
-            this.Damage = damage;
+            this.DamagePoints = damage;
         }
     }
 }
